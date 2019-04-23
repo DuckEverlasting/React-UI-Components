@@ -1,14 +1,11 @@
 import React from 'react';
 import './Button.css';
-
-function clear() {
-  return;
-}
+import maths from '../Maths'
 
 const ClearButton = () => {
   return (
     <div className="clear-button">
-      <p onClick={clear()}>clear</p>
+      <p onClick={() => {maths.clear()}}>clear</p>
     </div>
     )
 };

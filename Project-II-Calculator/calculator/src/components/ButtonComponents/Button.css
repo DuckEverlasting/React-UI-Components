@@ -1,13 +1,14 @@
 .calculator-buttons {
   display: flex;
-  height: 480px;
+  height: 79%;
   user-select: none;
+  cursor: pointer;
 }
 
 .left-buttons {
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 74%;
 }
 
 .clear-button {
@@ -19,6 +20,11 @@
   background: white;
   border: 1px solid #55596d;
 }
+
+.clear-button:active {
+  background: rgb(219, 219, 219);
+}
+
 
 .operand-assembly {
   display: flex;
@@ -41,6 +47,10 @@
   border: 1px solid #55596d;
 }
 
+.operand-button:active {
+  background: rgb(219, 219, 219);
+}
+
 .operand-button:first-child {
   width: 100%;
 }
@@ -49,7 +59,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 25%;
+  width: 26%;
   height: 100%;
 }
 
@@ -63,4 +73,12 @@
   color: white;
   background: #bb1333;
   border: 1px solid #55596d;
+}
+
+.operator-button:active {
+  background: rgb(223, 14, 53);
+}
+
+.operator-button .selected {
+  background: rgb(223, 14, 53);
 }

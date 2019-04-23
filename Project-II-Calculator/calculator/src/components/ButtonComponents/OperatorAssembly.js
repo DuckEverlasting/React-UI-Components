@@ -1,19 +1,12 @@
 import React from 'react';
 import './Button.css';
 import OperatorButton from './OperatorButton';
-
-const operators = [
-  {symbol: "÷", operation(){}},
-  {symbol: "×", operation(){}},
-  {symbol: "-", operation(){}},
-  {symbol: "+", operation(){}},
-  {symbol: "=", operation(){}},
-]
+import maths from '../Maths'
 
 const OperatorAssembly = () => {
   return (
     <div className="operator-assembly">
-      {operators.map(el => {
+      {maths.operators.map(el => {
         return <OperatorButton button={el} />
       })}
     </div>

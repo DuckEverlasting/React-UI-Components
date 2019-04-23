@@ -4,7 +4,7 @@ import './Button.css';
 const OperatorButton = (props) => {
   return (
     <div className="operator-button">
-      <p onClick={props.button.operation()}>{props.button.symbol}</p>
+      <p onClick={() => {props.button.operation()}}>{props.button.symbol}</p>
     </div>
     )
 };

@@ -1,14 +1,11 @@
 import React from 'react';
 import './Button.css';
-
-function enterOperand(value) {
-  return;
-}
+import maths from '../Maths'
 
 const OperandButton = (props) => {
   return (
     <div className="operand-button">
-      <p onClick={enterOperand(props.button.value)}>{props.button.value}</p>
+      <p onClick={function(){maths.enterOperand(props.button.value)}}>{props.button.value}</p>
     </div>
     )
 };
