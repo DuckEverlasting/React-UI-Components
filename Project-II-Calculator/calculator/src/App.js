@@ -6,10 +6,13 @@ import maths from './components/Maths'
 
 const App = () => {
   return (
-    <div className="calculator-container">
-        <CalculatorDisplay />
-        <CalculatorButtons />
-        {/* <div className="debug-button" onClick={function(){maths.debug()}}>DEBUG</div> */}
+    <div>
+      <div className="calculator-container">
+          <CalculatorDisplay />
+          <CalculatorButtons />
+      </div>
+      {/* <div className="debug-button" onClick={function(){maths.debug()}}>DEBUG</div> */}
+      <p className="brag-text">Calculator is now functional!<br/>For more info, check out CALC-FEATURES.md</p>
     </div>
   );
 };
