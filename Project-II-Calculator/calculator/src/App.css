@@ -5,3 +5,15 @@
   height: 598px;
   border: 1px solid #55596d;
 }
+
+.debug-button {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: blue;
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+}

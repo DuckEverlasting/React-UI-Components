@@ -1,7 +1,7 @@
 const maths = {
   "display": null, // set by display constructor upon creation
-  "currentValue": 0,
-  "storedValue": 0,
+  "currentValue": null,
+  "storedValue": null,
   "storedOperator": null,
   "operators": [
     {symbol: "÷"},
@@ -31,7 +31,6 @@ const maths = {
       this.currentValue = value;
     };
     this.display.setState({displayValue: this.currentValue});
-    console.log(this.currentValue);
   },
 
   enterOperator(symbol) {
@@ -39,7 +38,7 @@ const maths = {
       case "÷":
         this.operationDiv();
         break;
-      case "*":
+      case "×":
         this.operationMul();
         break;
       case "-":
@@ -54,30 +53,54 @@ const maths = {
   }},
 
   operationDiv() {
-    this.storedValue /= Number(this.currentValue);
-    this.currentValue = null;
-    this.storedOperator = "div"
+    if (this.storedValue != null) {
+      this.operationEqu();
+      this.storedValue = this.currentValue;
+    } else {
+      this.storedValue = Number(this.currentValue);
+      this.currentValue = null;
+    }
+    
+    this.storedOperator = "div";
     this.display.setState({displayValue: this.currentValue})
   },
 
   operationMul() {
-    this.storedValue *= Number(this.currentValue);
-    this.currentValue = null;
-    this.storedOperator = "mul"
+    if (this.storedValue != null) {
+      this.operationEqu();
+      this.storedValue = this.currentValue;
+    } else {
+      this.storedValue = Number(this.currentValue);
+      this.currentValue = null;
+    }
+    
+    this.storedOperator = "mul";
     this.display.setState({displayValue: this.currentValue})
   },
   
   operationSub() {
-    this.storedValue -= Number(this.currentValue);
-    this.currentValue = null;
-    this.storedOperator = "sub"
+    if (this.storedValue != null) {
+      this.operationEqu();
+      this.storedValue = this.currentValue;
+    } else {
+      this.storedValue = Number(this.currentValue);
+      this.currentValue = null;
+    }
+    
+    this.storedOperator = "sub";
     this.display.setState({displayValue: this.currentValue})
   },
 
   operationAdd() {
-    this.storedValue += Number(this.currentValue);
-    this.currentValue = null;
-    this.storedOperator = "add"
+    if (this.storedValue != null) {
+      this.operationEqu();
+      this.storedValue = this.currentValue;
+    } else {
+      this.storedValue = Number(this.currentValue);
+      this.currentValue = null;
+    }
+    
+    this.storedOperator = "add";
     this.display.setState({displayValue: this.currentValue})
   },
 
@@ -85,20 +108,20 @@ const maths = {
     if (this.storedValue !== 0) {
       switch(this.storedOperator) {
         case "div":
-          this.currentValue = Number(this.currentValue) / this.storedValue;
+          this.currentValue = this.storedValue / Number(this.currentValue);
           break;
         case "mul":
-          this.currentValue = Number(this.currentValue) * this.storedValue;
+          this.currentValue = this.storedValue * Number(this.currentValue);
           break;
         case "sub":
-          this.currentValue = Number(this.currentValue) - this.storedValue;
+          this.currentValue = this.storedValue - Number(this.currentValue);
           break;
         case "add":
-          this.currentValue = Number(this.currentValue) + this.storedValue;
+          this.currentValue = this.storedValue + Number(this.currentValue);
           break;
         default: this.currentValue = this.storedValue;
       }
-      this.storedValue = 0;
+      this.storedValue = null;
       this.storedOperator = null;
       this.display.setState({displayValue: this.currentValue})
     }
@@ -106,12 +129,16 @@ const maths = {
 
   clear() {
     if (this.currentValue !== 0) {
-      this.currentValue = 0;
-      this.storedValue = 0;
+      this.currentValue = null;
+      this.storedValue = null;
       this.storedOperator = null;
       this.display.setState({displayValue: this.currentValue})
     }
   },
+
+  debug() {
+    console.log("\n","current value:",this.currentValue,"\n","stored value:",this.storedValue,"\n","stored operator:",this.storedOperator);
+  }
 }
 
 export default maths;
