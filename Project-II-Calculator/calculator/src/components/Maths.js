@@ -4,52 +4,11 @@ const maths = {
   "storedValue": 0,
   "storedOperator": null,
   "operators": [
-    {symbol: "÷", operation(){
-      this.storedValue /= Number(this.currentValue);
-      this.currentValue = null;
-      this.storedOperator = "div"
-      this.display.setState({displayValue: this.currentValue})
-    }},
-    {symbol: "×", operation(){
-      this.storedValue *= Number(this.currentValue);
-      this.currentValue = null;
-      this.storedOperator = "mul"
-      this.display.setState({displayValue: this.currentValue})
-    }},
-    {symbol: "-", operation(){
-      this.storedValue -= Number(this.currentValue);
-      this.currentValue = null;
-      this.storedOperator = "sub"
-      this.display.setState({displayValue: this.currentValue})
-    }},
-    {symbol: "+", operation(){
-      this.storedValue += Number(this.currentValue);
-      this.currentValue = null;
-      this.storedOperator = "add"
-      this.display.setState({displayValue: this.currentValue})
-    }},
-    {symbol: "=", operation(){
-      if (this.storedValue !== 0) {
-        switch(this.storedOperator) {
-          case "div":
-            this.currentValue = Number(this.currentValue) / this.storedValue;
-            break;
-          case "mul":
-            this.currentValue = Number(this.currentValue) * this.storedValue;
-            break;
-          case "sub":
-            this.currentValue = Number(this.currentValue) - this.storedValue;
-            break;
-          case "add":
-            this.currentValue = Number(this.currentValue) + this.storedValue;
-            break;
-          default: this.currentValue = this.storedValue;
-        }
-        this.storedValue = 0;
-        this.storedOperator = null;
-        this.display.setState({displayValue: this.currentValue})
-      }
-    }},
+    {symbol: "÷"},
+    {symbol: "×"},
+    {symbol: "-"},
+    {symbol: "+"},
+    {symbol: "="}
   ],
 
   "operands": [
@@ -73,6 +32,76 @@ const maths = {
     };
     this.display.setState({displayValue: this.currentValue});
     console.log(this.currentValue);
+  },
+
+  enterOperator(symbol) {
+    switch(symbol) {
+      case "÷":
+        this.operationDiv();
+        break;
+      case "*":
+        this.operationMul();
+        break;
+      case "-":
+        this.operationSub();
+        break;
+      case "+":
+        this.operationAdd();
+        break;
+      case "=":
+        this.operationEqu();
+        break;
+  }},
+
+  operationDiv() {
+    this.storedValue /= Number(this.currentValue);
+    this.currentValue = null;
+    this.storedOperator = "div"
+    this.display.setState({displayValue: this.currentValue})
+  },
+
+  operationMul() {
+    this.storedValue *= Number(this.currentValue);
+    this.currentValue = null;
+    this.storedOperator = "mul"
+    this.display.setState({displayValue: this.currentValue})
+  },
+  
+  operationSub() {
+    this.storedValue -= Number(this.currentValue);
+    this.currentValue = null;
+    this.storedOperator = "sub"
+    this.display.setState({displayValue: this.currentValue})
+  },
+
+  operationAdd() {
+    this.storedValue += Number(this.currentValue);
+    this.currentValue = null;
+    this.storedOperator = "add"
+    this.display.setState({displayValue: this.currentValue})
+  },
+
+  operationEqu(){
+    if (this.storedValue !== 0) {
+      switch(this.storedOperator) {
+        case "div":
+          this.currentValue = Number(this.currentValue) / this.storedValue;
+          break;
+        case "mul":
+          this.currentValue = Number(this.currentValue) * this.storedValue;
+          break;
+        case "sub":
+          this.currentValue = Number(this.currentValue) - this.storedValue;
+          break;
+        case "add":
+          this.currentValue = Number(this.currentValue) + this.storedValue;
+          break;
+        default: this.currentValue = this.storedValue;
+      }
+      this.storedValue = 0;
+      this.storedOperator = null;
+      this.display.setState({displayValue: this.currentValue})
+    }
   },
 
   clear() {

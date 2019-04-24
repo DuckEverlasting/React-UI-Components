@@ -4,8 +4,8 @@ import maths from '../Maths'
 
 const OperandButton = (props) => {
   return (
-    <div className="operand-button">
-      <p onClick={function(){maths.enterOperand(props.button.value)}}>{props.button.value}</p>
+    <div className="operand-button" onClick={function(){maths.enterOperand(props.button.value)}}>
+      <p>{props.button.value}</p>
     </div>
     )
 };

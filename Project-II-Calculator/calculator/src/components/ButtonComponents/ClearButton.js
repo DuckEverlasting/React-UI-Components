@@ -4,8 +4,8 @@ import maths from '../Maths'
 
 const ClearButton = () => {
   return (
-    <div className="clear-button">
-      <p onClick={() => {maths.clear()}}>clear</p>
+    <div className="clear-button" onClick={() => {maths.clear()}}>
+      <p>clear</p>
     </div>
     )
 };
