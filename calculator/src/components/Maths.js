@@ -4,6 +4,7 @@ const maths = {
   "currentValue": null,
   "storedValue": null,
   "storedOperator": null,
+  "repeatGuard": false, // protects from multiple operators being stacked on top of one another without a number in between
   "operators": [
     {symbol: "÷"},
     {symbol: "×"},
@@ -26,6 +27,7 @@ const maths = {
   ],
 
   enterOperand(value) {
+    this.repeatGuard = false;
     if (typeof this.currentValue === "string" && this.currentValue !== "0") {
       if (this.currentValue.length < 11) {
         this.currentValue += value
@@ -37,6 +39,15 @@ const maths = {
   },
 
   enterOperator(symbol) {
+    if (symbol === "=") {
+      this.operationEqu();
+      return;
+    } else if (this.repeatGuard === true) {
+      return;
+    }
+    
+    this.repeatGuard = true;
+
     switch(symbol) {
       case "÷":
         this.operationDiv();
@@ -53,6 +64,7 @@ const maths = {
       case "=":
         this.operationEqu();
         break;
+      default: break;
   }},
 
   operationDiv() {
