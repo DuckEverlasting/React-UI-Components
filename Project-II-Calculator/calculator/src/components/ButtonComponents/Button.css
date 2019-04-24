@@ -76,9 +76,9 @@
 }
 
 .operator-button:active {
-  background: rgb(223, 14, 53);
+  background: #810018;
 }
 
-.operator-button .selected {
-  background: rgb(223, 14, 53);
+.operator-button.selected {
+  background: #810018;
 }

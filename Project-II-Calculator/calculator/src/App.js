@@ -9,7 +9,7 @@ const App = () => {
     <div className="calculator-container">
         <CalculatorDisplay />
         <CalculatorButtons />
-        <div className="debug-button" onClick={function(){maths.debug()}}>DEBUG</div>
+        {/* <div className="debug-button" onClick={function(){maths.debug()}}>DEBUG</div> */}
     </div>
   );
 };
