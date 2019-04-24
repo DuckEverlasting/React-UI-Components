@@ -5,6 +5,7 @@ const maths = {
   "storedValue": null,
   "storedOperator": null,
   "repeatGuard": false, // protects from multiple operators being stacked on top of one another without a number in between
+  "decimalGuard": false,
   "operators": [
     {symbol: "÷"},
     {symbol: "×"},
@@ -14,24 +15,43 @@ const maths = {
   ],
 
   "operands": [
-    {value: "0"},
-    {value: "1"},
-    {value: "2"},
-    {value: "3"},
-    {value: "4"},
-    {value: "5"},
-    {value: "6"},
-    {value: "7"},
-    {value: "8"},
-    {value: "9"},
+    {value: "neg", style: "light"},
+    {value: "0", style: "bold"},
+    {value: ".", style: "bold"},
+    {value: "1", style: "bold"},
+    {value: "2", style: "bold"},
+    {value: "3", style: "bold"},
+    {value: "4", style: "bold"},
+    {value: "5", style: "bold"},
+    {value: "6", style: "bold"},
+    {value: "7", style: "bold"},
+    {value: "8", style: "bold"},
+    {value: "9", style: "bold"},
   ],
 
   enterOperand(value) {
     this.repeatGuard = false;
     if (typeof this.currentValue === "string" && this.currentValue !== "0") {
       if (this.currentValue.length < 11) {
+        if (value === "." && this.decimalGuard === false) {
+          this.currentValue += value;
+          this.decimalGuard = true;
+        } else if (value === "." && this.decimalGuard === true) {
+          return;
+        } else if (value === "neg") {
+          return;
+        } else {
         this.currentValue += value
+        }
       }
+    } else if (value === ".") {
+      if (this.decimalGuard === true) {return};
+      this.currentValue = "0.";
+      this.decimalGuard = true;
+    } else if (value === "." && this.decimalGuard === true) {
+      return;
+    } else if (value === "neg") {
+      return;
     } else {
       this.currentValue = value;
     };
@@ -76,6 +96,7 @@ const maths = {
     } else if (this.currentValue !== null) {
       this.storedValue = Number(this.currentValue);
       this.currentValue = null;
+      this.decimalGuard = false;
     } else {
       return
     }
@@ -94,6 +115,7 @@ const maths = {
     } else if (this.currentValue !== null) {
       this.storedValue = Number(this.currentValue);
       this.currentValue = null;
+      this.decimalGuard = false;
     } else {
       return
     }
@@ -112,6 +134,7 @@ const maths = {
     } else if (this.currentValue !== null) {
       this.storedValue = Number(this.currentValue);
       this.currentValue = null;
+      this.decimalGuard = false;
     } else {
       return
     }
@@ -129,6 +152,7 @@ const maths = {
     } else if (this.currentValue !== null) {
       this.storedValue = Number(this.currentValue);
       this.currentValue = null;
+      this.decimalGuard = false;
     } else {
       return
     }
@@ -152,10 +176,13 @@ const maths = {
         case "add":
           this.currentValue = this.storedValue + Number(this.currentValue);
           break;
-        default: this.currentValue = null;
+        default: 
+          this.currentValue = null;
+          break;
       }
       this.lengthCheck();
       this.display.setState({displayValue: this.currentValue})
+      this.decimalGuard = false;
 
     } else if (this.storedValue !== null) {
       this.currentValue = this.storedValue.toString();
@@ -188,6 +215,7 @@ const maths = {
     this.currentValue = null;
     this.storedValue = null;
     this.storedOperator = null;
+    this.decimalGuard = false;
     this.toggleOperatorClass();
     this.display.setState({displayValue: this.currentValue})
   },

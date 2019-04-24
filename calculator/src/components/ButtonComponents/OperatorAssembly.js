@@ -1,7 +1,7 @@
 import React from 'react';
 import './Button.css';
 import OperatorButton from './OperatorButton';
-import maths from '../Maths'
+import maths from '../Maths';
 
 const OperatorAssembly = () => {
   return (
