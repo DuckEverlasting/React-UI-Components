@@ -1,0 +1,24 @@
+.calculator-container {
+  display: flex;
+  flex-direction: column;
+  width: 452px;
+  height: 598px;
+  border: 1px solid #55596d;
+}
+
+.debug-button {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: blue;
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.brag-text {
+  margin-top: 30px;
+  text-align: center;
+}
